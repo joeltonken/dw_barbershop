@@ -1,5 +1,3 @@
-
-
 import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/restClient/rest_client.dart';
 import 'package:dw_barbershop/src/model/barbershop_model.dart';
@@ -41,8 +39,8 @@ BarbershopRepository barbershopRepository(BarbershopRepositoryRef ref) =>
 
 @Riverpod(keepAlive: true)
 Future<BarbershopModel> getMyBarbershop(GetMyBarbershopRef ref) async {
-
   final userModel = await ref.watch(getMeProvider.future);
+
   final barbershopRepository = ref.watch(barbershopRepositoryProvider);
   final result = await barbershopRepository.getMyBarbershop(userModel);
 

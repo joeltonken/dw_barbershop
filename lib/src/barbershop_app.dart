@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class BarbershopApp extends StatelessWidget {
 
-  const BarbershopApp({ super.key });
+  const BarbershopApp({super.key});
 
    @override
    Widget build(BuildContext context) {

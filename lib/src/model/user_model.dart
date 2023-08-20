@@ -34,7 +34,7 @@ class UserModelADM extends UserModel {
     this.workHours,
   });
 
-    factory UserModelADM.fromMap(Map<String, dynamic> json) {
+  factory UserModelADM.fromMap(Map<String, dynamic> json) {
     return switch(json) {
       {
         'id': final int id,
@@ -62,10 +62,10 @@ class UserModelEmployee extends UserModel {
     required super.id,
     required super.name,
     required super.email,
-    super.avatar,
     required this.barbershopId,
     required this.workDays,
     required this.workHours,
+    super.avatar,
   });
 
   factory UserModelEmployee.fromMap(Map<String, dynamic> json) {

@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dw_barbershop/src/core/restClient/interceptors/auth_interceptor.dart';
