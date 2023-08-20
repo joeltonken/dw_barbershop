@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
       'password': password,
   });
 
-    return Sucess(data['acess_token']);
+    return Sucess(data['access_token']);
     } on DioException catch (e, s) {
       if(e.response != null) {
         final Response(:statusCode) = e.response!;
