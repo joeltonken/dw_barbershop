@@ -1,15 +1,15 @@
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeEmployee extends StatelessWidget {
-  final imageNetwork = false;
+  final UserModel employee;
 
-  const HomeEmployee({ super.key });
+  const HomeEmployee({super.key, required this.employee});
 
    @override
    Widget build(BuildContext context) {
-
     
        return Container(
         width: 200,
@@ -26,9 +26,9 @@ class HomeEmployee extends StatelessWidget {
             height: 56,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: switch (imageNetwork) {
-                  true => const NetworkImage('url'),
-                  false => const AssetImage(ImageConstants.avatar)
+                image: switch (employee.avatar) {
+                  final avatar? => NetworkImage(avatar),
+                  _ => const AssetImage(ImageConstants.avatar)
                 } as ImageProvider,
               ),
             ),
@@ -41,9 +41,9 @@ class HomeEmployee extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-              const Text(
-                'Nome e Sobrenome',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              Text(
+                employee.name,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,7 +68,6 @@ class HomeEmployee extends StatelessWidget {
               ],
              ),
            ),
-
         ]),
        );
   }

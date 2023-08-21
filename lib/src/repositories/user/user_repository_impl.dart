@@ -11,7 +11,6 @@ import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:dw_barbershop/src/repositories/user/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  
   final RestClient restClient;
 
   UserRepositoryImpl({
@@ -19,22 +18,23 @@ class UserRepositoryImpl implements UserRepository {
   });
 
   @override
-  Future<Either<AuthException, String>> login(String email, String password) async {
+  Future<Either<AuthException, String>> login(
+      String email, String password) async {
     try {
-     final Response(:data) = await restClient.unAuth.post('/auth', data: {
-      'email': email,
-      'password': password,
-  });
+      final Response(:data) = await restClient.unAuth.post('/auth', data: {
+        'email': email,
+        'password': password,
+      });
 
-    return Sucess(data['access_token']);
+      return Sucess(data['access_token']);
     } on DioException catch (e, s) {
-      if(e.response != null) {
+      if (e.response != null) {
         final Response(:statusCode) = e.response!;
-        if(statusCode == HttpStatus.forbidden) {
+        if (statusCode == HttpStatus.forbidden) {
           log('Login ou senha inválidos', error: e, stackTrace: s);
           return Failure(AuthUnauthorizedException());
+        }
       }
-    }
       log('Erro ao realizar login', error: e, stackTrace: s);
       return Failure(AuthError(message: 'Erro ao realizar login'));
     }
@@ -48,29 +48,47 @@ class UserRepositoryImpl implements UserRepository {
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
       return Failure(
-        RepositoryException(message: 'Erro ao buscar usuário logado'));
+          RepositoryException(message: 'Erro ao buscar usuário logado'));
     } on ArgumentError catch (e, s) {
       log('Invalid Json', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: e.message)
-      );
+      return Failure(RepositoryException(message: e.message));
     }
   }
 
   @override
-  Future<Either<RepositoryException, Nil>> registerAdmin(({String email, String name, String password}) userData) async {
+  Future<Either<RepositoryException, Nil>> registerAdmin(
+      ({String email, String name, String password}) userData) async {
     try {
       await restClient.unAuth.post('/users', data: {
         'name': userData.name,
         'email': userData.email,
         'password': userData.password,
         'profile': 'ADM'
-  });
-    return Sucess(nil);
-}   on DioException catch (e, s) {
-    log('Erro ao registrar usuário admin', error: e, stackTrace: s);
-    return Failure(
-      RepositoryException(message: 'Erro ao registrar usuário admin'),
+      });
+      return Sucess(nil);
+    } on DioException catch (e, s) {
+      log('Erro ao registrar usuário admin', error: e, stackTrace: s);
+      return Failure(
+        RepositoryException(message: 'Erro ao registrar usuário admin'),
       );
+    }
+  }
+
+  @override
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+      int barbershopId) async {
+    try {
+      final Response(:List data) = await restClient.auth
+          .get('/users', queryParameters: {'barbershop_id': barbershopId});
+
+      final employees = data.map((e) => UserModelEmployee.fromMap(e)).toList();
+      return Sucess(employees);
+    } on DioException catch (e, s) {
+      log('Erro ao buscar colaboradores', error: e, stackTrace: s);
+      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));
+    } on ArgumentError catch (e, s) {
+      log('Erro ao converter colaboradores (Invalid Json)', error: e, stackTrace: s);
+      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));  
     }
   }
 }
