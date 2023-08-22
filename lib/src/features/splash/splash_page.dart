@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/features/auth/login/login_page.dart';
 import 'package:dw_barbershop/src/features/splash/splash_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,14 +36,15 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   }
 
   void _redirect(String routeName) {
-    if (!endAnimation){
+    if (!endAnimation) {
       redirectTimer?.cancel();
-      redirectTimer = Timer(const Duration(milliseconds: 300), (){
+      redirectTimer = Timer(const Duration(milliseconds: 300), () {
         _redirect(routeName);
       });
     } else {
       redirectTimer?.cancel();
-      Navigator.of(context).pushNamedAndRemoveUntil(routeName, (route) => false);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(routeName, (route) => false);
     }
   }
 
