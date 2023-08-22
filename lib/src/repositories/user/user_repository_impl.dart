@@ -85,10 +85,64 @@ class UserRepositoryImpl implements UserRepository {
       return Sucess(employees);
     } on DioException catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));
+      return Failure(
+          RepositoryException(message: 'Erro ao buscar colaboradores'));
     } on ArgumentError catch (e, s) {
-      log('Erro ao converter colaboradores (Invalid Json)', error: e, stackTrace: s);
-      return Failure(RepositoryException(message: 'Erro ao buscar colaboradores'));  
+      log('Erro ao converter colaboradores (Invalid Json)',
+          error: e, stackTrace: s);
+      return Failure(
+          RepositoryException(message: 'Erro ao buscar colaboradores'));
+    }
+  }
+
+  @override
+  Future<Either<RepositoryException, Nil>> registerAdmAsEmployee(
+      ({List<int> workHours, List<String> workdays}) userModel) async {
+    try {
+      final userModelResult = await me();
+
+      final int userId;
+
+      switch (userModelResult) {
+        case Sucess(value: UserModel(:var id)):
+          userId = id;
+        case Failure(:var exception):
+          return Failure(exception);
+      }
+
+      await restClient.auth.put('/users/$userId', data: {
+        'work_days': userModel.workdays,
+        'work_hours': userModel.workHours,
+      });
+
+      return Sucess(nil);
+    } on DioException catch (e, s) {
+      log('Erro ao inserir administrador como colaborador',
+          error: e, stackTrace: s);
+      return Failure(RepositoryException(
+          message: 'Erro ao inserir administrador como colaborador'));
+    }
+  }
+  
+  @override
+  Future<Either<RepositoryException, Nil>> registerEmployee(({int barbershopId, String email, String name, String password, List<int> workHours, List<String> workdays}) userModel) async {
+    try {
+        await restClient.auth.post('/users/', data: {
+        'name': userModel.name,
+        'email': userModel.email,
+        'password': userModel.password,
+        'barbershop_id': userModel.barbershopId,
+        'profile': 'EMPLOYEE',
+        'work_days': userModel.workdays,
+        'work_hours': userModel.workHours,
+      });
+
+      return Sucess(nil);
+    } on DioException catch (e, s) {
+      log('Erro ao inserir administrador como colaborador',
+          error: e, stackTrace: s);
+      return Failure(RepositoryException(
+          message: 'Erro ao inserir administrador como colaborador'));
     }
   }
 }

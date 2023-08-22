@@ -50,8 +50,8 @@ class EmployeeRegisterVm extends _$EmployeeRegisterVm {
     String? email,
     String? password,
   }) async {
-    final EmployeeRegisterState(:registerAdm, :workdays, :workhours) = state;
-
+    
+    final EmployeeRegisterState(:registerADM, :workdays, :workhours) = state;
     final asyncLoaderHandler = AsyncLoaderHandler()..start();
 
     final UserRepository(
@@ -61,7 +61,7 @@ class EmployeeRegisterVm extends _$EmployeeRegisterVm {
 
     final Either<RepositoryException, Nil> resultRegister;
 
-    if (registerAdm) {
+    if (registerADM) {
       final dto = (
         workdays: workdays,
         workHours: workhours,
