@@ -1,10 +1,3 @@
-### Tópicos 
-
-- [Sobre o Projeto](#star-sobre-o-projeto)
-- [Objetivo](#dart-objetivo)
-- [Pacotes Utilizados](#gear-pacotes-utilizados)
-- [Como rodar a aplicação](#arrow_forward-como-rodar-a-aplicação)
-
 ## Sobre o Projeto 
 
 Aplicação desenvolvida durante a Dart Week 11, evento gratuito organizado pela [Academia do Flutter](https://academiadoflutter.com.br/).
@@ -22,25 +15,33 @@ Desenvolvimento de um aplicativo para agendamentos de uma barbearia.
 ### Funcionalidades:
 
 :white_check_mark: Efetuar Login 
+
 :white_check_mark: Criar conta
+
 :white_check_mark: Cadastrar estabelecimento
+
 :white_check_mark: Cadastrar colaborador
+
 :white_check_mark: Agendar cliente
+
 :white_check_mark: Visualizar agenda
 
 ### Backlog:
 
 :black_square_button: Editar agenda
+
 :black_square_button: Excluir agenda
+
 :black_square_button: Upload de imagens do perfil
+
 :black_square_button: Edição do perfil
   
 ## Pacotes Utilizados 
 
-### :station: Server
+### Server
 :white_check_mark:[Json Rest Server](https://pub.dev/packages/json_rest_server)
 
-### :iphone: Web
+### Web
 
  :white_check_mark:[flutter_riverpod](https://pub.dev/packages/flutter_riverpod)
 
