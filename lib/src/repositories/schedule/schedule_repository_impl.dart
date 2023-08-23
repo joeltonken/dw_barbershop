@@ -70,10 +70,10 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
         ),
       );
     } on ArgumentError catch (e, s) {
-      log('Invalid Json', error: e, stackTrace: s);
+      log('Json inválido', error: e, stackTrace: s);
       return Failure(
         RepositoryException(
-          message: 'Invalid Json',
+          message: 'Json inválido',
         ),
       );
     }
