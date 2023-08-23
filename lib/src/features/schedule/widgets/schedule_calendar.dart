@@ -60,7 +60,9 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
             availableGestures: AvailableGestures.none,
             headerStyle: const HeaderStyle(titleCentered: true),
             calendarFormat: CalendarFormat.month,
-            enabledDayPredicate: (day) => weekDaysEnable.contains(day.weekday),
+            enabledDayPredicate: (day) {
+              return weekDaysEnable.contains(day.weekday);
+            },
             locale: 'pt_BR',
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {

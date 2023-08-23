@@ -50,16 +50,16 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
           case ScheduleStateStatus.initial:
             break;
           case ScheduleStateStatus.success:
-            Messages.showSuccess('Cliente agendado com sucesso', context);
+            Messages.showSucess('Cliente agendado com sucesso', context);
             Navigator.of(context).pop();
           case ScheduleStateStatus.error:
-            Messages.showSuccess('Erro ao registrar agendamento', context);
+            Messages.showSucess('Erro ao registrar agendamento', context);
         }
       },
     );
 
     final employeeData = switch (userModel) {
-      UserModelAdm(:final workDays, :final workHours) => (
+      UserModelADM(:final workDays, :final workHours) => (
           workDays: workDays!,
           workHours: workHours!,
         ),
@@ -136,19 +136,19 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                           height: 24,
                         ),
                         ScheduleCalendar(
-                          workDays: employeeData.workDays,
                           cancelPressed: () {
                             setState(() {
                               showCalendar = false;
                             });
                           },
-                          okPressed: (value) {
+                          okPressed: (DateTime value) {
                             setState(() {
                               dateEC.text = dateFormat.format(value);
                               scheduleVm.dateSelect(value);
                               showCalendar = false;
                             });
                           },
+                          workDays: employeeData.workDays!, //atencao
                         ),
                       ],
                     ),
@@ -186,7 +186,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                             );
                           } else {
                             Messages.showError(
-                              'Por favor, selecione o horário de atendimento',
+                              'Por favor, selecione um horário de atendimento',
                               context,
                             );
                           }
