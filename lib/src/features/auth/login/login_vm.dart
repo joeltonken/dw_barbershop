@@ -22,7 +22,7 @@ class LoginVm extends _$LoginVm{
     final result = await loginService.execute(email, password);
 
     switch (result) {
-      case Sucess(): 
+      case Success(): 
         //invalidando os caches para evitar o login com o user errado
         ref.invalidate(getMeProvider);
         ref.invalidate(getMyBarbershopProvider);

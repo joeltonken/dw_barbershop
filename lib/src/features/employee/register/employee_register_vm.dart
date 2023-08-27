@@ -85,7 +85,7 @@ class EmployeeRegisterVm extends _$EmployeeRegisterVm {
     }
 
     switch (resultRegister) {
-      case Sucess():
+      case Success():
         state = state.copyWith(status: EmployeeRegisterStateStatus.success);
       case Failure():
         state = state.copyWith(status: EmployeeRegisterStateStatus.error);

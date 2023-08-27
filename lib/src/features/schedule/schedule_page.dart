@@ -8,7 +8,7 @@ import '../../core/ui/constants.dart';
 import '../../core/ui/helpers/form_helper.dart';
 import '../../core/ui/helpers/messages.dart';
 import '../../core/ui/widgets/avatar_widget.dart';
-import '../../core/ui/widgets/hours_painel.dart';
+import '../../core/ui/widgets/hours_panel.dart';
 import '../../model/user_model.dart';
 import 'schedule_state.dart';
 import 'schedule_vm.dart';
@@ -156,7 +156,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                   const SizedBox(
                     height: 24,
                   ),
-                  HoursPainel.singleSelection(
+                  HoursPanel.singleSelection(
                     startTime: 6,
                     endTime: 23,
                     onHourPressed: scheduleVm.hourSelect,

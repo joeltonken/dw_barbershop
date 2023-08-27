@@ -51,7 +51,7 @@ class ScheduleVm extends _$ScheduleVm {
     final scheduleResult = await scheduleRepository.scheduleClient(dto);
 
     switch (scheduleResult) {
-      case Sucess():
+      case Success():
         state = state.copyWith(status: ScheduleStateStatus.success);
       case Failure():
         state = state.copyWith(status: ScheduleStateStatus.error);

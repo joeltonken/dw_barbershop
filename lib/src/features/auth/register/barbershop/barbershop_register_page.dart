@@ -1,6 +1,6 @@
 import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/core/ui/widgets/hours_painel.dart';
+import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/weekdays_painel.dart';
 import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_state.dart';
 import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
@@ -86,7 +86,7 @@ class _BarbershopRegisterPageState extends ConsumerState<BarbershopRegisterPage>
                      const SizedBox(
                         height: 24,
                      ),
-                     HoursPainel(
+                     HoursPanel(
                       startTime: 6,
                       endTime: 23,
                       onHourPressed: (int value) {

@@ -38,7 +38,7 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
         },
       );
 
-      return Sucess(nil);
+      return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao registrar agendamento', error: e, stackTrace: s);
       return Failure(
@@ -61,7 +61,7 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
       );
 
       final schedules = data.map((s) => ScheduleModel.fromMap(s)).toList();
-      return Sucess(schedules);
+      return Success(schedules);
     } on DioException catch (e, s) {
       log('Erro ao buscar agendamentos de uma data', error: e, stackTrace: s);
       return Failure(

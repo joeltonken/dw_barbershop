@@ -20,10 +20,10 @@ class UserLoginServiceImpl implements UserLoginService {
     final loginResult = await userRepository.login(email, password);
   
     switch(loginResult){
-      case Sucess(value: final acessToken):
+      case Success(value: final acessToken):
         final sp = await SharedPreferences.getInstance();
         sp.setString(LocalStorageKeys.acessToken, acessToken);
-        return Sucess(nil);
+        return Success(nil);
       case Failure(:final exception):
         return switch(exception){
           AuthError() =>

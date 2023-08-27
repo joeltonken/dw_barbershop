@@ -31,13 +31,13 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
               'user_id': '#userAuthRef'
             },
           );
-          return Sucess(BarbershopModel.fromMap(data));
+          return Success(BarbershopModel.fromMap(data));
 
         case UserModelEmployee():
          final Response(:data) = await restClient.auth.get(
             '/barbershop/${userModel.barbershopId}'
             );
-          return Sucess(BarbershopModel.fromMap(data));
+          return Success(BarbershopModel.fromMap(data));
       }
   }
 
@@ -56,7 +56,7 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
       'opening_days': data.openingDays,
       'opening_hours': data.openingHours,
     });
-    return Sucess(nil);
+    return Success(nil);
   } on DioException catch (e, s) {
       log('Erro ao registrar barbearia', error: e, stackTrace: s);
       return Failure(

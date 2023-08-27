@@ -24,7 +24,7 @@ class UserRegisterAdmServiceImpl implements UserRegisterAdmService {
   final registerResult = await userRepository.registerAdmin(userData);   
   
   switch(registerResult) {
-    case Sucess():
+    case Success():
       return userLoginService.execute(userData.email, userData.password);
     case Failure(:final exception):
       return Failure(ServiceException(message: exception.message));

@@ -7,7 +7,7 @@ part of 'home_employee_provider.dart';
 // **************************************************************************
 
 String _$getTotalScheduleTodayHash() =>
-    r'8fe59eb926e12b08809ac851e7d5c59c7d71c089';
+    r'c02320fd686106440c796a896152193cfac61ee0';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -22,7 +22,7 @@ class HomeAdmVm extends _$HomeAdmVm{
     final employeesResult = await repository.getEmployees(barbershopId);
 
     switch(employeesResult){
-      case Sucess(value: final employeesData):
+      case Success(value: final employeesData):
         final employees = <UserModel>[];
         
         if(me case UserModelADM(workDays: _?, workHours: _?)) {

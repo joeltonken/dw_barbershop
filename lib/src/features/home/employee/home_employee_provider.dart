@@ -20,7 +20,7 @@ Future<int> getTotalScheduleToday(
   final scheduleResult = await scheduleRepository.findScheduleByDate(filter);
 
   return switch (scheduleResult) {
-    Sucess(value: List(length: final totalSchedules)) => totalSchedules,
+    Success(value: List(length: final totalSchedules)) => totalSchedules,
     Failure(:final exception) => throw exception,
   };
 }

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 
-class HoursPainel extends StatefulWidget {
+class HoursPanel extends StatefulWidget {
   final List<int>? enabledTimes;
   final int startTime;
   final int endTime;
   final ValueChanged<int> onHourPressed;
   final bool singleSelection;
 
-  const HoursPainel({
+  const HoursPanel({
     super.key,
     required this.startTime,
     required this.endTime,
@@ -17,7 +17,7 @@ class HoursPainel extends StatefulWidget {
     this.enabledTimes,
   }) : singleSelection = false;
 
-  const HoursPainel.singleSelection({
+  const HoursPanel.singleSelection({
     super.key,
     required this.startTime,
     required this.endTime,
@@ -26,16 +26,16 @@ class HoursPainel extends StatefulWidget {
   }) : singleSelection = true;
 
   @override
-  State<HoursPainel> createState() => _HoursPainelState();
+  State<HoursPanel> createState() => _HoursPanelState();
 }
 
-class _HoursPainelState extends State<HoursPainel> {
+class _HoursPanelState extends State<HoursPanel> {
 
   int? lastSelection;
 
    @override
    Widget build(BuildContext context) {
-       final HoursPainel(:singleSelection) = widget;
+       final HoursPanel(:singleSelection) = widget;
        return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

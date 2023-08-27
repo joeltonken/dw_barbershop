@@ -22,7 +22,7 @@ class EmployeeScheduleVm extends _$EmployeeScheduleVm {
     final scheduleListResult = await _getSchedule(userId, date);
 
     return switch (scheduleListResult) {
-      Sucess(value: final schedules) => schedules,
+      Success(value: final schedules) => schedules,
       Failure(:final exception) => throw Exception(exception),
     };
   }
@@ -31,7 +31,7 @@ class EmployeeScheduleVm extends _$EmployeeScheduleVm {
     final scheduleListResult = await _getSchedule(userId, date);
 
     state = switch (scheduleListResult) {
-      Sucess(value: final schedules) => AsyncData(schedules),
+      Success(value: final schedules) => AsyncData(schedules),
       Failure(:final exception) => AsyncError(
           Exception(exception),
           StackTrace.current,

@@ -33,7 +33,7 @@ Future<UserModel> getMe(GetMeRef ref) async {
   final result = await ref.watch(userRepositoryProvider).me();
 
   return switch(result) {
-    Sucess(value: final userModel) => userModel,
+    Success(value: final userModel) => userModel,
     Failure(:final exception) => throw exception,
   };  
 }
@@ -50,7 +50,7 @@ Future<BarbershopModel> getMyBarbershop(GetMyBarbershopRef ref) async {
   final result = await barbershopRepository.getMyBarbershop(userModel);
 
   return switch(result) {
-    Sucess(value: final barbershop) => barbershop,
+    Success(value: final barbershop) => barbershop,
     Failure(:final exception) => throw exception
   };
 }

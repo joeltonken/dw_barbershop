@@ -48,7 +48,7 @@ class BarbershopRegisterVm extends _$BarbershopRegisterVm {
     final registerResult = await repository.save(dto);
 
     switch(registerResult){
-      case Sucess():
+      case Success():
         ref.invalidate(getMyBarbershopProvider);
         state = state.copyWith(status: BarbershopRegisterStateStatus.sucess);
       case Failure():

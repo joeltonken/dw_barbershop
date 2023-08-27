@@ -26,7 +26,7 @@ class UserRepositoryImpl implements UserRepository {
         'password': password,
       });
 
-      return Sucess(data['access_token']);
+      return Success(data['access_token']);
     } on DioException catch (e, s) {
       if (e.response != null) {
         final Response(:statusCode) = e.response!;
@@ -44,7 +44,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<RepositoryException, UserModel>> me() async {
     try {
       final Response(:data) = await restClient.auth.get('/me');
-      return Sucess(UserModel.fromMap(data));
+      return Success(UserModel.fromMap(data));
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
       return Failure(
@@ -65,7 +65,7 @@ class UserRepositoryImpl implements UserRepository {
         'password': userData.password,
         'profile': 'ADM'
       });
-      return Sucess(nil);
+      return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao registrar usuário admin', error: e, stackTrace: s);
       return Failure(
@@ -82,7 +82,7 @@ class UserRepositoryImpl implements UserRepository {
           .get('/users', queryParameters: {'barbershop_id': barbershopId});
 
       final employees = data.map((e) => UserModelEmployee.fromMap(e)).toList();
-      return Sucess(employees);
+      return Success(employees);
     } on DioException catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
       return Failure(
@@ -104,7 +104,7 @@ class UserRepositoryImpl implements UserRepository {
       final int userId;
 
       switch (userModelResult) {
-        case Sucess(value: UserModel(:var id)):
+        case Success(value: UserModel(:var id)):
           userId = id;
         case Failure(:var exception):
           return Failure(exception);
@@ -115,7 +115,7 @@ class UserRepositoryImpl implements UserRepository {
         'work_hours': userModel.workHours,
       });
 
-      return Sucess(nil);
+      return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao inserir administrador como colaborador',
           error: e, stackTrace: s);
@@ -137,7 +137,7 @@ class UserRepositoryImpl implements UserRepository {
         'work_hours': userModel.workHours,
       });
 
-      return Sucess(nil);
+      return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao inserir administrador como colaborador',
           error: e, stackTrace: s);
