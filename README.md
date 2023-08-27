@@ -132,6 +132,12 @@ Acessar o arquivo main.dart, e pressionar F5, ou executar o comando abaixo na ra
  flutter run -d all
 ```
 
+Também execute: 
+
+```
+ dart run build_runner watch -d
+```
+
 Antes de executar, verifique se você possuí um dispositivo ou emulador pronto para ser utilizado.
 
 Abra a paleta de comandos e digite : ```Flutter``` e a seguir a opção ```Select a device```
